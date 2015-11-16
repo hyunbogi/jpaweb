@@ -1,6 +1,8 @@
 package com.hyunbogi.jpaweb.domain;
 
 import com.hyunbogi.jpaweb.domain.embeddable.Address;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -17,47 +19,20 @@ public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "MEMBER_ID")
+    @Getter
     private Long id;
 
     @Column(nullable = false, unique = true)
+    @Getter
+    @Setter
     private String name;
 
     @Embedded
+    @Getter
+    @Setter
     private Address address;
 
     @OneToMany(mappedBy = "member")
+    @Getter
     private List<Order> orders = new ArrayList<>();
-
-    public Member() {
-    }
-
-    public Member(String name, Address address, List<Order> orders) {
-        this.name = name;
-        this.address = address;
-        this.orders = orders;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public List<Order> getOrders() {
-        return orders;
-    }
 }

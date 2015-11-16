@@ -1,6 +1,8 @@
 package com.hyunbogi.jpaweb.domain;
 
 import com.hyunbogi.jpaweb.exception.NotEnoughStockException;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -21,50 +23,24 @@ public abstract class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ITEM_ID")
+    @Getter
     private Long id;
 
+    @Getter
+    @Setter
     private String name;
+
+    @Getter
+    @Setter
     private int price;
+
+    @Getter
+    @Setter
     private int stockQuantity;
 
     @ManyToMany(mappedBy = "items")
+    @Getter
     private List<Category> categories = new ArrayList<>();
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public int getStockQuantity() {
-        return stockQuantity;
-    }
-
-    public void setStockQuantity(int stockQuantity) {
-        this.stockQuantity = stockQuantity;
-    }
-
-    public List<Category> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
-    }
 
     public void addStock(int quantity) {
         stockQuantity += quantity;

@@ -18,6 +18,7 @@ dependencies {
     def junitVersion = '4.12'
     def servletApiVersion = '3.1.0'
     def jstlVersion = '1.2'
+    def lombokVersion = '1.16.6'
 
     compile "mysql:mysql-connector-java:${mysqlConnectorVersion}"
     compile "org.springframework:spring-webmvc:${springVersion}"
@@ -27,6 +28,7 @@ dependencies {
     compile "org.apache.tomcat:tomcat-jdbc:${tomcatJdbcVersion}"
 
     providedCompile "javax.servlet:javax.servlet-api:${servletApiVersion}"
+    providedCompile "org.projectlombok:lombok:${lombokVersion}"
 
     runtime "javax.servlet.jsp:jsp-api:${jspApiVersion}"
     runtime "ch.qos.logback:logback-classic:${logbackClassicVersion}"

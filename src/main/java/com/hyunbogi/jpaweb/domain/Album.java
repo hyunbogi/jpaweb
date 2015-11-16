@@ -1,27 +1,19 @@
 package com.hyunbogi.jpaweb.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("A")
 public class Album extends Item {
+    @Getter
+    @Setter
     private String artist;
+
+    @Getter
+    @Setter
     private String etc;
-
-    public String getArtist() {
-        return artist;
-    }
-
-    public void setArtist(String artist) {
-        this.artist = artist;
-    }
-
-    public String getEtc() {
-        return etc;
-    }
-
-    public void setEtc(String etc) {
-        this.etc = etc;
-    }
 }

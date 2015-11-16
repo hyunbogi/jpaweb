@@ -1,6 +1,8 @@
 package com.hyunbogi.jpaweb.domain;
 
 import com.hyunbogi.jpaweb.domain.embeddable.Address;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -17,42 +19,21 @@ public class Delivery {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "DELIVERY_ID")
+    @Getter
     private Long id;
 
     @OneToOne(mappedBy = "delivery")
+    @Getter
+    @Setter
     private Order order;
 
     @Embedded
+    @Getter
+    @Setter
     private Address address;
 
     @Enumerated(EnumType.STRING)
+    @Getter
+    @Setter
     private DeliveryStatus status;
-
-    public Long getId() {
-        return id;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public DeliveryStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(DeliveryStatus status) {
-        this.status = status;
-    }
 }

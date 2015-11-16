@@ -1,5 +1,8 @@
 package com.hyunbogi.jpaweb.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,64 +27,40 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ORDER_ID")
+    @Getter
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEMBER_ID")
+    @Getter
     private Member member;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @Getter
     private List<OrderItem> orderItems = new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "DELIVERY_ID")
+    @Getter
     private Delivery delivery;
 
+    @Getter
+    @Setter
     private Date orderDate;
 
     @Enumerated(EnumType.STRING)
+    @Getter
+    @Setter
     private OrderStatus status;
-
-    public Long getId() {
-        return id;
-    }
-
-    public Member getMember() {
-        return member;
-    }
 
     public void setMember(Member member) {
         this.member = member;
         member.getOrders().add(this);
     }
 
-    public List<OrderItem> getOrderItems() {
-        return orderItems;
-    }
-
-    public Delivery getDelivery() {
-        return delivery;
-    }
-
     public void setDelivery(Delivery delivery) {
         this.delivery = delivery;
         delivery.setOrder(this);
-    }
-
-    public Date getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
-    }
-
-    public OrderStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(OrderStatus status) {
-        this.status = status;
     }
 
     public void addOrderItem(OrderItem orderItem) {
