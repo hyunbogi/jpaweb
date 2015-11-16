@@ -1,5 +1,7 @@
 package com.hyunbogi.jpaweb.domain;
 
+import com.hyunbogi.jpaweb.exception.NotEnoughStockException;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
@@ -62,5 +64,17 @@ public abstract class Item {
 
     public void setCategories(List<Category> categories) {
         this.categories = categories;
+    }
+
+    public void addStock(int quantity) {
+        stockQuantity += quantity;
+    }
+
+    public void removeStock(int quantity) {
+        int restStock = stockQuantity - quantity;
+        if (restStock < 0) {
+            throw new NotEnoughStockException("need more stock");
+        }
+        stockQuantity = restStock;
     }
 }
