@@ -11,8 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "order_item")
 public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,10 +34,12 @@ public class OrderItem {
     @Setter
     private Order order;
 
+    @Column(name = "order_price")
     @Getter
     @Setter
     private int orderPrice;
 
+    @Column(name = "count")
     @Getter
     @Setter
     private int count;

@@ -14,10 +14,12 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "category")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,13 +27,14 @@ public class Category {
     @Getter
     private Long id;
 
+    @Column(name = "name")
     @Getter
     @Setter
     private String name;
 
     @ManyToMany
     @JoinTable(
-            name = "CATEGORY_ITEM",
+            name = "category_item",
             joinColumns = @JoinColumn(name = "CATEGORY_ID"),
             inverseJoinColumns = @JoinColumn(name = "ITEM_ID")
     )

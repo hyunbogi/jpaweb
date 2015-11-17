@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("/appConfig.xml")
+@ContextConfiguration("classpath:appConfig.xml")
 public class MemberServiceTest {
     @Autowired
     private MemberService memberService;

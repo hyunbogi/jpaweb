@@ -13,10 +13,12 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "item")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "DTYPE")
 public abstract class Item {
@@ -26,14 +28,17 @@ public abstract class Item {
     @Getter
     private Long id;
 
+    @Column(name = "name")
     @Getter
     @Setter
     private String name;
 
+    @Column(name = "price")
     @Getter
     @Setter
     private int price;
 
+    @Column(name = "stock_quantity")
     @Getter
     @Setter
     private int stockQuantity;
