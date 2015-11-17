@@ -45,6 +45,6 @@ public class MemberServiceTest {
     public void duplicateMember() {
         memberService.join(members[0]);
         memberService.join(members[1]);
-        fail("Must thorw exception");
+        fail("Must throw exception");
     }
 }
