@@ -3,22 +3,27 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans.xsd
             http://www.springframework.org/schema/tx
             http://www.springframework.org/schema/tx/spring-tx.xsd
             http://www.springframework.org/schema/context
-            http://www.springframework.org/schema/context/spring-context.xsd">
+            http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.springframework.org/schema/util
+            http://www.springframework.org/schema/util/spring-util.xsd">
 
     <tx:annotation-driven/>
 
     <context:component-scan base-package="com.hyunbogi.jpaweb.service, com.hyunbogi.jpaweb.repository"/>
 
+    <util:properties id="database" location="classpath:props/database.xml"/>
+
     <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost/jpamasterdb?characterEncoding=UTF-8"/>
-        <property name="username" value="hyunbogi"/>
-        <property name="password" value="aaa12345"/>
+        <property name="driverClassName" value="#{database['db.driverClassName']}"/>
+        <property name="url" value="#{database['db.url']}"/>
+        <property name="username" value="#{database['db.username']}"/>
+        <property name="password" value="#{database['db.password']}"/>
     </bean>
 
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
