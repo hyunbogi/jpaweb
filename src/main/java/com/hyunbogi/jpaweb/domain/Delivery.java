@@ -2,6 +2,7 @@ package com.hyunbogi.jpaweb.domain;
 
 import com.hyunbogi.jpaweb.domain.embeddable.Address;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Column;
@@ -17,6 +18,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "delivery")
+@NoArgsConstructor
 public class Delivery {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,4 +41,8 @@ public class Delivery {
     @Getter
     @Setter
     private DeliveryStatus status;
+
+    public Delivery(Address address) {
+        this.address = address;
+    }
 }

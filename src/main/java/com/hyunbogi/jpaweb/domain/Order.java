@@ -58,6 +58,19 @@ public class Order {
     @Setter
     private OrderStatus status;
 
+    public static Order createOrder(Member member, Delivery delivery, OrderItem... orderItems) {
+        Order order = new Order();
+        order.setMember(member);
+        order.setDelivery(delivery);
+        for (OrderItem orderItem : orderItems) {
+            order.addOrderItem(orderItem);
+        }
+        order.setOrderDate(new Date());
+        order.setStatus(OrderStatus.ORDER);
+
+        return order;
+    }
+
     public void setMember(Member member) {
         this.member = member;
         member.getOrders().add(this);
@@ -71,5 +84,30 @@ public class Order {
     public void addOrderItem(OrderItem orderItem) {
         orderItems.add(orderItem);
         orderItem.setOrder(this);
+    }
+
+    /**
+     * 주문을 취소한다.
+     */
+    public void cancel() {
+        if (delivery.getStatus() == DeliveryStatus.COMP) {
+            throw new RuntimeException("Unable to cancel the order");
+        }
+        setStatus(OrderStatus.CANCEL);
+        orderItems.forEach(OrderItem::cancel);
+    }
+
+    /**
+     * 전체 주문 가격을 조회한다.
+     *
+     * @return 전체 주문 가격
+     */
+    public int getTotalPrice() {
+        int totalPrice = 0;
+        for (OrderItem orderItem : orderItems) {
+            totalPrice += orderItem.getTotalPrice();
+        }
+
+        return totalPrice;
     }
 }

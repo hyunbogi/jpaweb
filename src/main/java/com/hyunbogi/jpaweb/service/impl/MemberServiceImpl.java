@@ -1,7 +1,8 @@
-package com.hyunbogi.jpaweb.service;
+package com.hyunbogi.jpaweb.service.impl;
 
 import com.hyunbogi.jpaweb.domain.Member;
 import com.hyunbogi.jpaweb.repository.MemberRepository;
+import com.hyunbogi.jpaweb.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -43,4 +43,31 @@ public class OrderItem {
     @Getter
     @Setter
     private int count;
+
+    public static OrderItem createOrderItem(Item item, int orderPrice, int count) {
+        OrderItem orderItem = new OrderItem();
+        orderItem.setItem(item);
+        orderItem.setOrderPrice(orderPrice);
+        orderItem.setCount(count);
+
+        item.removeStock(count);
+
+        return orderItem;
+    }
+
+    /**
+     * 주문을 취소한다.
+     */
+    public void cancel() {
+        getItem().addStock(count);
+    }
+
+    /**
+     * 주문 삼품 전체 가격을 조회한다.
+     *
+     * @return 주문 상품 전체 가격
+     */
+    public int getTotalPrice() {
+        return getOrderPrice() * count;
+    }
 }
