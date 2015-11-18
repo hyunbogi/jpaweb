@@ -30,6 +30,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ORDER_ID")
     @Getter
+    @Setter
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)

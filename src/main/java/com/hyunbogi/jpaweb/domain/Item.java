@@ -26,6 +26,7 @@ public abstract class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ITEM_ID")
     @Getter
+    @Setter
     private Long id;
 
     @Column(name = "name")

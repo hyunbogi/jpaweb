@@ -1,0 +1,23 @@
+package com.hyunbogi.jpaweb.web.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class HomeController {
+    /**
+     * 홈 화면
+     */
+    @RequestMapping("/")
+    public String home() {
+        return "home";
+    }
+
+    /**
+     * Request mapping 정보 페이지 (for debugging)
+     */
+    @RequestMapping("/mapping_info")
+    public String mapping_info() {
+        return "requestMapping";
+    }
+}

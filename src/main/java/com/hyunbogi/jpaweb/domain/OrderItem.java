@@ -20,6 +20,7 @@ public class OrderItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ORDER_ITEM_ID")
     @Getter
+    @Setter
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)

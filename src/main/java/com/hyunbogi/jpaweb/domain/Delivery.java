@@ -24,6 +24,7 @@ public class Delivery {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "DELIVERY_ID")
     @Getter
+    @Setter
     private Long id;
 
     @OneToOne(mappedBy = "delivery")
