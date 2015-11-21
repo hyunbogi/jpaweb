@@ -23,7 +23,7 @@ import static org.junit.Assert.fail;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/appConfig.xml")
-public class OrderServiceImplTest {
+public class OrderServiceTest {
     @PersistenceContext
     private EntityManager em;
 
