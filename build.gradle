@@ -1,33 +1,58 @@
 group 'com.hyunbogi'
 version '1.0-SNAPSHOT'
 
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath 'io.spring.gradle:dependency-management-plugin:0.5.2.RELEASE'
+        classpath "gradle.plugin.com.ewerk.gradle.plugins:querydsl-plugin:1.0.5"
+    }
+}
+
+apply plugin: 'io.spring.dependency-management'
+apply plugin: "com.ewerk.gradle.plugins.querydsl"
 apply plugin: 'war'
+
+ext {
+    springVersion = '4.2.3.RELEASE'
+    springDataVersion = 'Gosling-RELEASE'
+
+    mysqlConnectorVersion = '5.1.37'
+    hibernateVersion = '5.0.2.Final'
+    slf4jVersion = '1.7.13'
+    tomcatJdbcVersion = '8.0.28'
+    jspApiVersion = '2.2.1-b03'
+    logbackClassicVersion = '1.1.3'
+    junitVersion = '4.12'
+    servletApiVersion = '3.1.0'
+    jstlVersion = '1.2'
+    lombokVersion = '1.16.6'
+    querydslVersion = '3.6.9'
+}
 
 repositories {
     mavenCentral()
 }
 
-dependencies {
-    def mysqlConnectorVersion = '5.1.37'
-    def springVersion = '4.2.2.RELEASE'
-    def springDataJpaVersion = '1.9.1.RELEASE'
-    def hibernateVersion = '5.0.2.Final'
-    def slf4jVersion = '1.7.13'
-    def tomcatJdbcVersion = '8.0.28'
-    def jspApiVersion = '2.2.1-b03'
-    def logbackClassicVersion = '1.1.3'
-    def junitVersion = '4.12'
-    def servletApiVersion = '3.1.0'
-    def jstlVersion = '1.2'
-    def lombokVersion = '1.16.6'
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework:spring-framework-bom:${springVersion}"
+        mavenBom "org.springframework.data:spring-data-releasetrain:${springDataVersion}"
+    }
+}
 
+dependencies {
     compile "mysql:mysql-connector-java:${mysqlConnectorVersion}"
-    compile "org.springframework:spring-webmvc:${springVersion}"
-    compile "org.springframework:spring-orm:${springVersion}"
-    compile "org.springframework.data:spring-data-jpa:${springDataJpaVersion}"
+    compile "org.springframework:spring-webmvc"
+    compile "org.springframework.data:spring-data-jpa"
     compile "org.hibernate:hibernate-entitymanager:${hibernateVersion}"
     compile "org.slf4j:slf4j-api:${slf4jVersion}"
     compile "org.apache.tomcat:tomcat-jdbc:${tomcatJdbcVersion}"
+    compile "com.mysema.querydsl:querydsl-jpa:${querydslVersion}"
 
     providedCompile "javax.servlet:javax.servlet-api:${servletApiVersion}"
     providedCompile "org.projectlombok:lombok:${lombokVersion}"
@@ -38,4 +63,9 @@ dependencies {
 
     testCompile "junit:junit:${junitVersion}"
     testCompile "org.springframework:spring-test:${springVersion}"
+}
+
+querydsl {
+    library = "com.mysema.querydsl:querydsl-apt:${querydslVersion}"
+    jpa = true
 }
