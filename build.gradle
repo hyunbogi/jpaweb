@@ -10,6 +10,7 @@ repositories {
 dependencies {
     def mysqlConnectorVersion = '5.1.37'
     def springVersion = '4.2.2.RELEASE'
+    def springDataJpaVersion = '1.9.1.RELEASE'
     def hibernateVersion = '5.0.2.Final'
     def slf4jVersion = '1.7.13'
     def tomcatJdbcVersion = '8.0.28'
@@ -23,6 +24,7 @@ dependencies {
     compile "mysql:mysql-connector-java:${mysqlConnectorVersion}"
     compile "org.springframework:spring-webmvc:${springVersion}"
     compile "org.springframework:spring-orm:${springVersion}"
+    compile "org.springframework.data:spring-data-jpa:${springDataJpaVersion}"
     compile "org.hibernate:hibernate-entitymanager:${hibernateVersion}"
     compile "org.slf4j:slf4j-api:${slf4jVersion}"
     compile "org.apache.tomcat:tomcat-jdbc:${tomcatJdbcVersion}"
