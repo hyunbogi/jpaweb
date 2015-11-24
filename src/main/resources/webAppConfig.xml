@@ -22,6 +22,7 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <!-- OSIV 적용 -->
     <mvc:interceptors>
         <bean class="org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor">
             <property name="entityManagerFactory" ref="entityManagerFactory"/>

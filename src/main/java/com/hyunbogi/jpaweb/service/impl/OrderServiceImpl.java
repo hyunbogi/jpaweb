@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class OrderServiceImpl implements OrderService {
     @Autowired
     private MemberRepository memberRepository;
@@ -28,7 +29,6 @@ public class OrderServiceImpl implements OrderService {
     private ItemService itemService;
 
     @Override
-    @Transactional
     public Long order(Long memberId, Long itemId, int count) {
         Member member = memberRepository.findOne(memberId);
         Item item = itemService.findOne(itemId);
@@ -43,7 +43,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    @Transactional
     public void cancelOrder(Long orderId) {
         Order order = orderRepository.findOne(orderId);
         order.cancel();

@@ -2,6 +2,7 @@ package com.hyunbogi.jpaweb.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,6 +21,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "category")
+@ToString
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,6 +52,7 @@ public class Category {
 
     @OneToMany(mappedBy = "parent")
     @Getter
+    @Setter
     private List<Category> child = new ArrayList<>();
 
     public void addChildCategory(Category child) {

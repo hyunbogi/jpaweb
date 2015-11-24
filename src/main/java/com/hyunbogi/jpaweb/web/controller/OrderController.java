@@ -29,6 +29,9 @@ public class OrderController {
     @Autowired
     private ItemService itemService;
 
+    /**
+     * 상품 주문 폼
+     */
     @RequestMapping(value = "/order", method = RequestMethod.GET)
     public String createForm(Model model) {
         List<Member> members = memberService.findMembers();
@@ -40,6 +43,9 @@ public class OrderController {
         return "order/orderForm";
     }
 
+    /**
+     * 상품 주문
+     */
     @RequestMapping(value = "/order", method = RequestMethod.POST)
     public String order(@RequestParam("memberId") Long memberId,
                         @RequestParam("itemId") Long itemId,
@@ -48,6 +54,9 @@ public class OrderController {
         return "redirect:/orders";
     }
 
+    /**
+     * 주문 목록
+     */
     @RequestMapping(value = "/orders", method = RequestMethod.GET)
     public String orderList(@ModelAttribute("orderSearch") OrderSearch orderSearch, Model model) {
         List<Order> orders = orderService.findOrders(orderSearch);
@@ -56,6 +65,9 @@ public class OrderController {
         return "order/orderList";
     }
 
+    /**
+     * 주문 취소
+     */
     @RequestMapping(value = "/orders/{orderId}/cancel")
     public String processCancelBuy(@PathVariable("orderId") Long orderId) {
         orderService.cancelOrder(orderId);

@@ -3,6 +3,7 @@ package com.hyunbogi.jpaweb.domain;
 import com.hyunbogi.jpaweb.exception.NotEnoughStockException;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -21,6 +22,7 @@ import java.util.List;
 @Table(name = "item")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "DTYPE")
+@ToString
 public abstract class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,12 +48,23 @@ public abstract class Item {
 
     @ManyToMany(mappedBy = "items")
     @Getter
+    @Setter
     private List<Category> categories = new ArrayList<>();
 
+    /**
+     * 재고 수량을 증가시킨다.
+     *
+     * @param quantity 재고 수량
+     */
     public void addStock(int quantity) {
         stockQuantity += quantity;
     }
 
+    /**
+     * 재고 수량을 감소시킨다.
+     *
+     * @param quantity 재고 수량
+     */
     public void removeStock(int quantity) {
         int restStock = stockQuantity - quantity;
         if (restStock < 0) {

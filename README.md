@@ -1,6 +1,6 @@
-# IntelliJ Project
+# IntelliJ Project 설정
 
-## 1. AnnotationProcessor
+## 1. AnnotationProcessor 설정
  - Go to File - Settings - Build, Execution, Deployment - Compile - AnnotationProcessor
  - Check 'Enable annotation processing'
  - Check 'module content root'

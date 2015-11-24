@@ -16,11 +16,17 @@ public class MemberController {
     @Autowired
     private MemberService memberService;
 
+    /**
+     * 회원 가입 폼
+     */
     @RequestMapping(value = "/members/new", method = RequestMethod.GET)
     public String createForm() {
         return "members/createMemberForm";
     }
 
+    /**
+     * 회원 가입
+     */
     @RequestMapping(value = "/members/new", method = RequestMethod.POST)
     public String create(Member member, String city, String street, String zipcode) {
         Address address = new Address(city, street, zipcode);
@@ -30,6 +36,9 @@ public class MemberController {
         return "redirect:/";
     }
 
+    /**
+     * 회원 목록
+     */
     @RequestMapping(value = "/members", method = RequestMethod.GET)
     public String list(Model model) {
         List<Member> members = memberService.findMembers();

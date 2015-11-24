@@ -33,6 +33,9 @@ public class MemberServiceTest {
         }
     }
 
+    /**
+     * 회원 가입 테스트
+     */
     @Test
     @Transactional
     public void signUp() {
@@ -40,6 +43,9 @@ public class MemberServiceTest {
         assertEquals(members[0], memberRepository.findOne(saveId));
     }
 
+    /**
+     * 중복 회원 가입 실패 테스트
+     */
     @Test(expected = IllegalStateException.class)
     @Transactional
     public void duplicateMember() {

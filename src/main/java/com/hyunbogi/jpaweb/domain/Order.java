@@ -2,6 +2,7 @@ package com.hyunbogi.jpaweb.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -25,6 +26,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "orders")
+@ToString
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,6 +61,9 @@ public class Order {
     @Setter
     private OrderStatus status;
 
+    /**
+     * Factory method
+     */
     public static Order createOrder(Member member, Delivery delivery, OrderItem... orderItems) {
         Order order = new Order();
         order.setMember(member);

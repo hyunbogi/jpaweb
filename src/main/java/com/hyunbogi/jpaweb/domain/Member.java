@@ -3,6 +3,7 @@ package com.hyunbogi.jpaweb.domain;
 import com.hyunbogi.jpaweb.domain.embeddable.Address;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -17,6 +18,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "member")
+@ToString
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,5 +39,6 @@ public class Member {
 
     @OneToMany(mappedBy = "member")
     @Getter
+    @Setter
     private List<Order> orders = new ArrayList<>();
 }

@@ -4,6 +4,7 @@ import com.hyunbogi.jpaweb.domain.embeddable.Address;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -19,6 +20,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "delivery")
 @NoArgsConstructor
+@ToString
 public class Delivery {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,5 +47,6 @@ public class Delivery {
 
     public Delivery(Address address) {
         this.address = address;
+        status = DeliveryStatus.READY;
     }
 }

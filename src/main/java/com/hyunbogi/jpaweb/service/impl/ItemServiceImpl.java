@@ -10,12 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class ItemServiceImpl implements ItemService {
     @Autowired
     private ItemRepository itemRepository;
 
     @Override
-    @Transactional
     public void saveItem(Item item) {
         itemRepository.save(item);
     }

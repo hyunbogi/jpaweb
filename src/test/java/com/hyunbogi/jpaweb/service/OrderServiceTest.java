@@ -33,6 +33,9 @@ public class OrderServiceTest {
     @Autowired
     private OrderRepository orderRepository;
 
+    /**
+     * 주문 테스트
+     */
     @Test
     @Transactional
     public void order() {
@@ -49,6 +52,9 @@ public class OrderServiceTest {
         assertEquals(8, item.getStockQuantity());
     }
 
+    /**
+     * 재고 수량 초과 주문 실패 테스트
+     */
     @Test(expected = NotEnoughStockException.class)
     @Transactional
     public void orderOverStockQuantity() {
@@ -60,6 +66,9 @@ public class OrderServiceTest {
         fail("Must throw exception");
     }
 
+    /**
+     * 주문 취소 테스트
+     */
     @Test
     @Transactional
     public void cancelOrder() {
