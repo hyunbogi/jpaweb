@@ -16,11 +16,12 @@ buildscript {
 apply plugin: 'io.spring.dependency-management'
 apply plugin: "com.ewerk.gradle.plugins.querydsl"
 apply plugin: 'war'
+apply plugin: 'idea'
 
 ext {
+    // Dependency version
     springVersion = '4.2.3.RELEASE'
     springDataVersion = 'Gosling-RELEASE'
-
     mysqlConnectorVersion = '5.1.37'
     hibernateVersion = '5.0.2.Final'
     slf4jVersion = '1.7.13'
@@ -46,26 +47,51 @@ dependencyManagement {
 }
 
 dependencies {
+    // MySQL Connector
     compile "mysql:mysql-connector-java:${mysqlConnectorVersion}"
-    compile "org.springframework:spring-webmvc"
-    compile "org.springframework.data:spring-data-jpa"
-    compile "org.hibernate:hibernate-entitymanager:${hibernateVersion}"
-    compile "org.slf4j:slf4j-api:${slf4jVersion}"
+
+    // DB Connection pool
     compile "org.apache.tomcat:tomcat-jdbc:${tomcatJdbcVersion}"
+
+    // Spring Framework
+    compile "org.springframework:spring-webmvc"
+
+    // Spring Data JPA
+    compile "org.springframework.data:spring-data-jpa"
+
+    // JPA, Hibernate
+    compile "org.hibernate:hibernate-entitymanager:${hibernateVersion}"
+
+    // Logging
+    compile "org.slf4j:slf4j-api:${slf4jVersion}"
+    runtime "ch.qos.logback:logback-classic:${logbackClassicVersion}"
+
+    // QueryDSL
     compile "com.mysema.querydsl:querydsl-jpa:${querydslVersion}"
 
+    // WEB
     providedCompile "javax.servlet:javax.servlet-api:${servletApiVersion}"
-    providedCompile "org.projectlombok:lombok:${lombokVersion}"
-
     runtime "javax.servlet.jsp:jsp-api:${jspApiVersion}"
-    runtime "ch.qos.logback:logback-classic:${logbackClassicVersion}"
     runtime "jstl:jstl:${jstlVersion}"
 
+    // Lombok
+    providedCompile "org.projectlombok:lombok:${lombokVersion}"
+
+    // Test
     testCompile "junit:junit:${junitVersion}"
     testCompile "org.springframework:spring-test:${springVersion}"
 }
 
+// For QueryDSL plugin
 querydsl {
     library = "com.mysema.querydsl:querydsl-apt:${querydslVersion}"
+    querydslSourcesDir = 'src/querydsl/java'
     jpa = true
+}
+
+// For IDEA plugin
+idea {
+    module {
+        generatedSourceDirs += file(querydsl.querydslSourcesDir)
+    }
 }
