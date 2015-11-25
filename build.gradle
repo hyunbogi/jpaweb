@@ -48,7 +48,7 @@ dependencyManagement {
 
 dependencies {
     // MySQL Connector
-    compile "mysql:mysql-connector-java:${mysqlConnectorVersion}"
+    runtime "mysql:mysql-connector-java:${mysqlConnectorVersion}"
 
     // DB Connection pool
     compile "org.apache.tomcat:tomcat-jdbc:${tomcatJdbcVersion}"
