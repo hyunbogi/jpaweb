@@ -12,12 +12,4 @@ public class HomeController {
     public String home() {
         return "home";
     }
-
-    /**
-     * Request mapping 정보 페이지 (for debugging)
-     */
-    @RequestMapping("/mapping_info")
-    public String mapping_info() {
-        return "requestMapping";
-    }
 }
