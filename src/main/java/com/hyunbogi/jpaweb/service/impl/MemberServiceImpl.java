@@ -5,12 +5,10 @@ import com.hyunbogi.jpaweb.repository.MemberRepository;
 import com.hyunbogi.jpaweb.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-@Transactional
 public class MemberServiceImpl implements MemberService {
     @Autowired
     private MemberRepository memberRepository;
@@ -24,13 +22,11 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public List<Member> findMembers() {
         return memberRepository.findAll();
     }
 
     @Override
-    @Transactional(readOnly = true)
     public Member findOne(Long memberId) {
         return memberRepository.findOne(memberId);
     }

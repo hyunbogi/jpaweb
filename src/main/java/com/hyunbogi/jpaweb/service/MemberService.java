@@ -1,9 +1,11 @@
 package com.hyunbogi.jpaweb.service;
 
 import com.hyunbogi.jpaweb.domain.Member;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Transactional
 public interface MemberService {
     /**
      * 회원으로 가입한다.
@@ -18,6 +20,7 @@ public interface MemberService {
      *
      * @return 모든 회원들의 정보
      */
+    @Transactional(readOnly = true)
     List<Member> findMembers();
 
     /**
@@ -26,5 +29,6 @@ public interface MemberService {
      * @param memberId 가져올 회원의 ID
      * @return 회원 정보
      */
+    @Transactional(readOnly = true)
     Member findOne(Long memberId);
 }

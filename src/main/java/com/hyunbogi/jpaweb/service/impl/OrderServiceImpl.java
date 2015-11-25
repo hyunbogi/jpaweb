@@ -12,12 +12,10 @@ import com.hyunbogi.jpaweb.service.ItemService;
 import com.hyunbogi.jpaweb.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-@Transactional
 public class OrderServiceImpl implements OrderService {
     @Autowired
     private MemberRepository memberRepository;
@@ -49,7 +47,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public List<Order> findOrders(OrderSearch orderSearch) {
         return orderRepository.findAll(orderSearch.toSpecification());
     }

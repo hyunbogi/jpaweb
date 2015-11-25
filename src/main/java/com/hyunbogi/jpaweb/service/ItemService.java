@@ -1,9 +1,11 @@
 package com.hyunbogi.jpaweb.service;
 
 import com.hyunbogi.jpaweb.domain.Item;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Transactional
 public interface ItemService {
     /**
      * 상품을 저장한다.
@@ -17,6 +19,7 @@ public interface ItemService {
      *
      * @return 모든 상품 정보
      */
+    @Transactional(readOnly = true)
     List<Item> findItems();
 
     /**
@@ -25,5 +28,6 @@ public interface ItemService {
      * @param itemId 상품 ID
      * @return 상품 정보
      */
+    @Transactional(readOnly = true)
     Item findOne(Long itemId);
 }
