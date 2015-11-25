@@ -5,5 +5,5 @@
  - Check 'Enable annotation processing'
  - Check 'module content root'
  - Set Production sources directory : src/querydsl/java
- - Add 'com.mysema.query.apt.jpa.JPAAnnotationProcessor' and 'lombok.launch.AnnotationProcessorHider$AnnotationProcessor' 
- to Annotation Processors
+ - Add 'com.mysema.query.apt.jpa.JPAAnnotationProcessor'and
+ 'lombok.launch.AnnotationProcessorHider$AnnotationProcessor' to Annotation Processors
